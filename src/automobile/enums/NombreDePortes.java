@@ -2,10 +2,10 @@ package automobile.enums;
 
 public enum NombreDePortes {
 
-    DEUX(2, "Compacte et agile"),
+    DEUX(2, "Epais et léger"),
     TROIS(3, "Polyvalente et compacte"),
-    QUATRE(4, "Spacieuse et confortable"),
-    CINQ(5, "Familiale et pratique");
+    QUATRE(4, "Large et agreeable"),
+    CINQ(5, "Familiale et efficace");
 
     private int nombre;
     private String description;
@@ -29,5 +29,13 @@ public enum NombreDePortes {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "NombreDePorte { " +
+                    "nombre = " + nombre +
+                    ", description = '" + description + '\'' +
+                '}';
     }
 }

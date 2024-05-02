@@ -1,4 +1,4 @@
-package clientele.model;
+package clientele.models;
 
 import clientele.enums.TypeClient;
 import clientele.utils.GestionDates;
@@ -20,11 +20,11 @@ public class ClientProfessionnel extends Location {
 
     @Override
     public String toString() {
-        return "ClientProfessionnel{" +
-                " nom = " + nom + '\'' +
-                ", type = " + type +
-                ", date = " + date.getDate() +
-                 ", tauxRemise = " + tauxRemise +
+        return "ClientProfessionnel { " +
+                    " nom = " + nom + '\'' +
+                    ", type = " + type +
+                    ", date = " + date.getDate() +
+                    ", tauxRemise = " + tauxRemise +
                 '}';
     }
 }

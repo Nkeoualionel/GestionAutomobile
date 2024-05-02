@@ -1,4 +1,4 @@
-package clientele.model;
+package clientele.models;
 
 
 import clientele.enums.TypeClient;
@@ -52,14 +52,14 @@ public class ClientParticulier extends Location {
 
     @Override
     public String toString() {
-        return "ClientParticulier{" +
-                " nom = '" + nom + '\'' +
-                " prenom = '" + prenom + '\'' +
-                ", age = " + age +
-                ", adresse = '" + adresse + '\'' +
-                ", nombreLocations = " + nombreLocations +
-                ", type = " + type +
-                ", date = " + date.getDate() +
+        return "ClientParticulier { " +
+                    " nom = '" + nom + '\'' +
+                    " prenom = '" + prenom + '\'' +
+                    ", age = " + age +
+                    ", adresse = '" + adresse + '\'' +
+                    ", nombreLocations = " + nombreLocations +
+                    ", type = " + type +
+                    ", date = " + date.getDate() +
                 '}';
     }
 }

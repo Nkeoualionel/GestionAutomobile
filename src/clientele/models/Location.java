@@ -1,4 +1,4 @@
-package clientele.model;
+package clientele.models;
 
 import clientele.enums.TypeClient;
 import clientele.utils.GestionDates;
