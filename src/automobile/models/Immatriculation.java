@@ -15,8 +15,8 @@ public class Immatriculation {
         this.identification = identification;
     }
 
-    public boolean estIdentique(String imma) {
-        return this.identification.equals(imma);
+    public boolean estIdentique(Immatriculation immatriculation) {
+        return this.identification.equals(immatriculation.identification);
     }
 
     @Override

@@ -4,7 +4,7 @@ import automobile.enums.Constructeur;
 import automobile.enums.NombreDePortes;
 import automobile.enums.TypeVehicule;
 
-public class Voiture {
+public class Vehicule {
     private TypeVehicule typeVehicule;
     private NombreDePortes nombreDePortes;
     private Immatriculation immatriculation;
@@ -12,8 +12,10 @@ public class Voiture {
     private String modele;
     private double kilometrage;
     private double prixAchat;
+    private double kilometrageFin;
+    private String dateFin;
 
-    public Voiture(TypeVehicule typeVehicule, NombreDePortes nombreDePortes, Immatriculation immatriculation, Constructeur constructeur, String modele, double kilometrage, double prixAchat) {
+    public Vehicule(TypeVehicule typeVehicule, NombreDePortes nombreDePortes, Immatriculation immatriculation, Constructeur constructeur, String modele, double kilometrage, double prixAchat, double kilometrageFin, String dateFin) {
         this.typeVehicule = typeVehicule;
         this.nombreDePortes = nombreDePortes;
         this.immatriculation = immatriculation;
@@ -21,6 +23,8 @@ public class Voiture {
         this.modele = modele;
         this.kilometrage = kilometrage;
         this.prixAchat = prixAchat;
+        this.kilometrageFin = kilometrageFin;
+        this.dateFin = dateFin;
     }
 
 
@@ -80,6 +84,23 @@ public class Voiture {
         this.prixAchat = prixAchat;
     }
 
+    public double getKilometrageFin() {
+        return kilometrageFin;
+    }
+
+    public void setKilometrageFin(double kilometrageFin) {
+        this.kilometrageFin = kilometrageFin;
+    }
+
+    public String getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(String dateFin) {
+        this.dateFin = dateFin;
+    }
+
+
     @Override
     public String toString() {
         return "Voiture { " +
@@ -90,6 +111,8 @@ public class Voiture {
                     ", modele = '" + modele + '\'' +
                     ", kilometrage = " + kilometrage +
                     ", prixAchat = " + prixAchat +
+                    ", kilometrageFin = " + kilometrageFin +
+                    ", dateFin = " + dateFin +
                 '}';
     }
 }

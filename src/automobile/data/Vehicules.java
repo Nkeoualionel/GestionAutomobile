@@ -3,16 +3,18 @@ package automobile.data;
 import automobile.models.Berline;
 import automobile.models.Break;
 import automobile.models.Utilitaire;
+import automobile.models.Vehicule;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
-public class Vehicules {
-    private static Vehicules instance = null;
-    private Vector<Berline> berlines;
-    private Vector<Break> breaks;
-    private Vector<Utilitaire> utilitaires;
+public class Vehicules extends Vector<Vehicule> {
+    public static Vehicules instance = null;
+    public Vector<Berline> berlines;
+    public Vector<Break> breaks;
+    public Vector<Utilitaire> utilitaires;
 
-    private Vehicules() {
+    public Vehicules() {
         berlines = new Vector<>();
         breaks = new Vector<>();
         utilitaires = new Vector<>();
@@ -23,28 +25,6 @@ public class Vehicules {
     public static Vehicules getInstance() {
         return instance == null ?  instance = new Vehicules() : instance;
     }
-
-    public void ajouterBerline(Berline berline) {
-        if(berline == null) {
-            return;
-        }
-        berlines.add(berline);
-    }
-
-    public void ajouterBreak(Break berline) {
-        if(berline == null) {
-            return;
-        }
-        breaks.add(berline);
-    }
-
-    public void ajouterUtilitaire(Utilitaire utilitaire) {
-        if(utilitaire == null) {
-            return;
-        }
-        utilitaires.add(utilitaire);
-    }
-
 
     public void afficherVehicules() {
         for (Berline berline : berlines) {

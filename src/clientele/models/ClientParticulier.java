@@ -4,7 +4,7 @@ package clientele.models;
 import clientele.enums.TypeClient;
 import clientele.utils.GestionDates;
 
-public class ClientParticulier extends Location {
+public class ClientParticulier extends Client {
     public String prenom;
     public int age;
     public String adresse;
@@ -53,12 +53,12 @@ public class ClientParticulier extends Location {
     @Override
     public String toString() {
         return "ClientParticulier { " +
-                    " nom = '" + nom + '\'' +
+                    " nom = '" + nomClient + '\'' +
                     " prenom = '" + prenom + '\'' +
                     ", age = " + age +
                     ", adresse = '" + adresse + '\'' +
                     ", nombreLocations = " + nombreLocations +
-                    ", type = " + type +
+                    ", type = " + typeClient +
                     ", date = " + date.getDate() +
                 '}';
     }

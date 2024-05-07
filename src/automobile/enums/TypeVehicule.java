@@ -1,17 +1,17 @@
 package automobile.enums;
 
 public enum TypeVehicule {
-    BERLINE("Berline", 50.0, "Confortable pour les déplacements en ville"),
-    BREAK("Break", 60.0, "Spacieux pour les voyages en famille"),
-    UTILITAIRE("Utilitaire", 70.0, "Pratique pour le transport de marchandises");
+    BERLINE("Berline", 0.28, "Confortable pour les déplacements en ville"),
+    BREAK("Break", 0.18, "Spacieux pour les voyages en famille"),
+    UTILITAIRE("Utilitaire", 0.15, "Pratique pour le transport de marchandises");
 
     private String type;
-    private double prixJour;
+    private double prixLocationParKm;
     private String description;
 
-    TypeVehicule(String type, double prixJour, String description) {
+    TypeVehicule(String type, double prixLocationParKm, String description) {
         this.type = type;
-        this.prixJour = prixJour;
+        this.prixLocationParKm = prixLocationParKm;
         this.description = description;
     }
 
@@ -23,12 +23,12 @@ public enum TypeVehicule {
         this.type = type;
     }
 
-    public double getPrixJour() {
-        return prixJour;
+    public double getPrixLocationParKm() {
+        return prixLocationParKm;
     }
 
-    public void setPrixJour(double prixJour) {
-        this.prixJour = prixJour;
+    public void setPrixLocationParKm(double prixJour) {
+        this.prixLocationParKm = prixJour;
     }
 
     public String getDescription() {
@@ -43,7 +43,7 @@ public enum TypeVehicule {
     public String toString() {
         return "TypeVehicule { " +
                     " type = '" + type + '\'' +
-                    ", prixJour = " + prixJour +
+                    ", prixLocationParKm = " + prixLocationParKm +
                     ", description = '" + description + '\'' +
                 '}';
     }

@@ -1,11 +1,12 @@
 package clientele.data;
 
+import clientele.models.Client;
 import clientele.models.ClientParticulier;
 import clientele.models.ClientProfessionnel;
 
 import java.util.ArrayList;
 
-public class Clients {
+public class Clients extends ArrayList<Client>{
     private static Clients instance = null;
     private ArrayList<ClientParticulier> clientsParticuliers;
     private ArrayList<ClientProfessionnel> clientsProfessionnels;
@@ -17,21 +18,6 @@ public class Clients {
 
     public static Clients getInstance() {
         return instance == null ?  instance = new Clients() : instance;
-    }
-
-    public void ajoutClientParti(ClientParticulier client) {
-        if(client == null) {
-            return;
-        }
-
-        clientsParticuliers.add(client);
-    }
-
-    public void ajoutClientPro(ClientProfessionnel client) {
-        if(client == null) {
-            return;
-        }
-        clientsProfessionnels.add(client);
     }
 
     public void afficherClients() {

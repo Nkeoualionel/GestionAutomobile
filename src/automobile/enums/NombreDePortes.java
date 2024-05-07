@@ -5,7 +5,8 @@ public enum NombreDePortes {
     DEUX(2, "Epais et léger"),
     TROIS(3, "Polyvalente et compacte"),
     QUATRE(4, "Large et agreeable"),
-    CINQ(5, "Familiale et efficace");
+    CINQ(5, "Familiale et efficace"),
+    HUIT(8, "Famille nombreuse et spacieux");
 
     private int nombre;
     private String description;
