@@ -26,7 +26,6 @@ public class Main {
         clients.add(client);
         clients.add(client1);
 
-        clients.afficherClients();
 
         Vehicules vehicules = Vehicules.getInstance();
         Vehicule vehicule = new Berline(TypeVehicule.BERLINE, NombreDePortes.QUATRE, new Immatriculation("344 AC 4"), Constructeur.CITROEN, "4x4", 230.0, 20000, 300, "10/05/2024");

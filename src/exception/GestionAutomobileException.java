@@ -1,4 +1,4 @@
-package execption;
+package exception;
 
 public class GestionAutomobileException extends Exception {
     public GestionAutomobileException(String message) {

@@ -4,6 +4,7 @@ import automobile.models.Berline;
 import automobile.models.Break;
 import automobile.models.Utilitaire;
 import automobile.models.Vehicule;
+import clientele.data.Clients;
 
 import java.util.ArrayList;
 import java.util.Vector;
@@ -26,6 +27,10 @@ public class Vehicules extends Vector<Vehicule> {
         return instance == null ?  instance = new Vehicules() : instance;
     }
 
+    public static void setInstance(Vehicules vehiculesInstance) {
+        instance = vehiculesInstance;
+    }
+
     public void afficherVehicules() {
         for (Berline berline : berlines) {
             System.out.println(berline);
@@ -38,5 +43,13 @@ public class Vehicules extends Vector<Vehicule> {
         for (Utilitaire utilitaire : utilitaires) {
             System.out.println(utilitaire);
         }
+    }
+
+    public ArrayList<?> getVehicules() {
+        ArrayList<Vector> newList = new ArrayList<>();
+        newList.add(berlines);
+        newList.add(breaks);
+        newList.add(utilitaires);
+        return newList;
     }
 }

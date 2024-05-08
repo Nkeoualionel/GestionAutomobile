@@ -1,28 +1,36 @@
 package gestion.data;
 
 import automobile.models.Vehicule;
-import clientele.enums.TypeClient;
 import clientele.models.Client;
-import clientele.utils.GestionDates;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 
 public class Gestion {
+    public static Gestion instance = null;
     public HashSet<Vehicule> vehiculesDispoLocation;
     public LinkedList<Vehicule> vehiculesDispoVente;
     public HashMap<Client, Vehicule> vehiculesEnLocation;
     public double kilometrageVente;
     public double kilometrageMaximumVente;
 
-    //Constructeur sans argument qui initialise
     public Gestion() {
         this.vehiculesDispoLocation = new HashSet<>();
         this.vehiculesDispoVente = new LinkedList<>();
         this.vehiculesEnLocation = new HashMap<>();
         this.kilometrageVente = 0.0;
         this.kilometrageMaximumVente = 100000.0;
+    }
+
+    /*Singleton: Cette méthode renvoie toujours la même instance de la classe Vehicules, en s'assurant
+       qu'il n'y a qu'une seule instance de cette classe dans toute l'application.*/
+    public static Gestion getInstance() {
+        if(instance == null) {
+            instance = new Gestion();
+        }
+        return instance;
     }
 
     //Verification si un véhicule spécifique fait parti des véhicules en location disponible
@@ -73,6 +81,16 @@ public class Gestion {
         return (vehicule.getPrixAchat() *  kilometrageMaximumVente) / (kilometrageMaximumVente + kilometrageVente);
     }
 
+    public HashSet<Vehicule> getVehiculesDispoLocation() {
+        return vehiculesDispoLocation;
+    }
+
+    public LinkedList<Vehicule> getVehiculesDispoVente() {
+        return vehiculesDispoVente;
+    }
+    public HashMap<Client, Vehicule> getVehiculesEnLocation() {
+        return vehiculesEnLocation;
+    }
 
     @Override
     public String toString() {
