@@ -1,10 +1,11 @@
-package clientele.utils;
+package clients.utils;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class GestionDates {
+public class GestionDates implements Serializable {
     private String date;
     private final String format = "dd/MM/yyyy";
     private SimpleDateFormat simpleDateFormat;

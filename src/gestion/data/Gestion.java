@@ -1,9 +1,8 @@
 package gestion.data;
 
-import automobile.models.Vehicule;
-import clientele.models.Client;
+import vehicules.models.Vehicule;
+import clients.models.Client;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -13,15 +12,13 @@ public class Gestion {
     public HashSet<Vehicule> vehiculesDispoLocation;
     public LinkedList<Vehicule> vehiculesDispoVente;
     public HashMap<Client, Vehicule> vehiculesEnLocation;
-    public double kilometrageVente;
-    public double kilometrageMaximumVente;
+    public static final double KILOMETRAGE_VENTE = 100000.0;
+    public static final double KILOMETRAGE_MAX_VENTE = 200000.0;
 
     public Gestion() {
         this.vehiculesDispoLocation = new HashSet<>();
         this.vehiculesDispoVente = new LinkedList<>();
         this.vehiculesEnLocation = new HashMap<>();
-        this.kilometrageVente = 0.0;
-        this.kilometrageMaximumVente = 100000.0;
     }
 
     /*Singleton: Cette méthode renvoie toujours la même instance de la classe Vehicules, en s'assurant
@@ -33,9 +30,15 @@ public class Gestion {
         return instance;
     }
 
+    public static void setInstance(Gestion gestion) {
+        instance = gestion;
+    }
+
     //Verification si un véhicule spécifique fait parti des véhicules en location disponible
+    //Un vehicule est en location ssi, il n'est pas disponible pour la vente et n'est pas actuellement
+    //dejà en location
     public boolean estDispoLocation(Vehicule vehicule) {
-        return vehiculesDispoLocation.contains(vehicule);
+        return !vehiculesDispoVente.contains(vehicule) && !vehiculesEnLocation.containsValue(vehicule);
     }
 
     //Verification si un véhicule spécifique fait parti des véhicules en vente disponible
@@ -46,6 +49,17 @@ public class Gestion {
     //Verification si un véhicule spécifique est en location actuellement
     public boolean estEnLocation(Vehicule vehicule) {
         return vehiculesEnLocation.get(vehicule) != null;
+    }
+
+    public HashSet<Vehicule> getVehiculesDispoLocation() {
+        return vehiculesDispoLocation;
+    }
+
+    public LinkedList<Vehicule> getVehiculesDispoVente() {
+        return vehiculesDispoVente;
+    }
+    public HashMap<Client, Vehicule> getVehiculesEnLocation() {
+        return vehiculesEnLocation;
     }
 
     //Calcule du prix de location d'un véhicule
@@ -69,7 +83,8 @@ public class Gestion {
         double prixLocation = reduction * ((prixParKilometre * kilometrageEffectue) + (nombreDeJour * (1 + ((double) vehicule.getNombreDePortes().getNombre() / 10))));
 
         if(prixLocation > 0) {
-            return prixLocation;
+            //Arrondire le prixLocation pour avoir un prix ayant 2 chiffre après la virgule
+            return Math.round(prixLocation * 100.0) / 100.0;
         }
 
         return 0.0;
@@ -78,18 +93,19 @@ public class Gestion {
 
     //Calcule du prix de vente d'un véhicule
     public double prixVente(Vehicule vehicule) {
-        return (vehicule.getPrixAchat() *  kilometrageMaximumVente) / (kilometrageMaximumVente + kilometrageVente);
+        return Math.round((vehicule.getPrixAchat() *  KILOMETRAGE_MAX_VENTE) / (KILOMETRAGE_MAX_VENTE + vehicule.getKilometrage()) * 100.0) / 100.0;
     }
 
-    public HashSet<Vehicule> getVehiculesDispoLocation() {
-        return vehiculesDispoLocation;
-    }
 
-    public LinkedList<Vehicule> getVehiculesDispoVente() {
-        return vehiculesDispoVente;
-    }
-    public HashMap<Client, Vehicule> getVehiculesEnLocation() {
-        return vehiculesEnLocation;
+    public void terminerLocation(Client client, Vehicule vehicule, String dateFin, double kilometrageFin) {
+        vehiculesEnLocation.remove(client);
+        vehicule.setDateFin(dateFin);
+        vehicule.setKilometrageFin(kilometrageFin);
+
+        // Vérifier si le véhicule est disponible à la vente en fonction du kilométrage
+        if (kilometrageFin <= KILOMETRAGE_VENTE) {
+            vehiculesDispoLocation.add(vehicule);
+        }
     }
 
     @Override
@@ -98,8 +114,8 @@ public class Gestion {
                     "  vehiculesDispoLocation = " + vehiculesDispoLocation +
                     ", vehiculesDispoVente = " + vehiculesDispoVente +
                     ", vehiculesEnLocation = " + vehiculesEnLocation +
-                    ", kilometrageVente = " + kilometrageVente +
-                    ", kilometrageMaximumVente = " + kilometrageMaximumVente +
+                    ", kilometrageVente = " + KILOMETRAGE_VENTE +
+                    ", kilometrageMaximumVente = " + KILOMETRAGE_MAX_VENTE +
                 '}';
     }
 }

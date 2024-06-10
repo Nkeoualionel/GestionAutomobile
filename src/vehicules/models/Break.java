@@ -1,8 +1,8 @@
-package automobile.models;
+package vehicules.models;
 
-import automobile.enums.Constructeur;
-import automobile.enums.NombreDePortes;
-import automobile.enums.TypeVehicule;
+import vehicules.enums.Constructeur;
+import vehicules.enums.NombreDePortes;
+import vehicules.enums.TypeVehicule;
 
 public class Break extends Vehicule {
 

@@ -1,4 +1,4 @@
-package automobile.enums;
+package vehicules.enums;
 
 public enum Constructeur {
     TESLA,

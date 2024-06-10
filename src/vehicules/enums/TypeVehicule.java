@@ -1,4 +1,4 @@
-package automobile.enums;
+package vehicules.enums;
 
 public enum TypeVehicule {
     BERLINE("Berline", 0.28, "Confortable pour les déplacements en ville"),

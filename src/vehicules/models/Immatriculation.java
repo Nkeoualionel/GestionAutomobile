@@ -1,6 +1,8 @@
-package automobile.models;
+package vehicules.models;
 
-public class Immatriculation {
+import java.io.Serializable;
+
+public class Immatriculation implements Serializable {
     private String identification;
 
     public Immatriculation(String identification) {

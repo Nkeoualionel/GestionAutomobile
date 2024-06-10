@@ -1,3 +1,4 @@
+import exception.GestionAutomobileVehiculesVenteException;
 import vehicules.data.Vehicules;
 import vehicules.enums.Constructeur;
 import vehicules.enums.NombreDePortes;
@@ -16,13 +17,14 @@ import gestion.models.GestionLocation;
 import gestion.models.GestionVente;
 import sauvegarde.Sauvegarde;
 
-public class Main {
+public class Test {
     private static final Vehicules vehicules = Vehicules.getInstance();
     private static final  Clients clients =  Clients.getInstance();
     private static final Gestion gestion = Gestion.getInstance();
     public static void main(String[] args) throws GestionAutomobileVehiculesException, GestionAutomobileClientsException {
         testLocation();
         testVente();
+        testExceptions();
     }
 
 
@@ -113,5 +115,16 @@ public class Main {
         }
 
         System.out.println("---------- FIN TEST VENTE ----------");
+    }
+
+    private static void testExceptions() throws GestionAutomobileClientsException, GestionAutomobileVehiculesVenteException {
+        //Ajout Client Particulier age -2
+        clients.ajouterClient(new ClientParticulier("DOE", TypeClient.PARTICULIER, new GestionDates("01/05/2024"), "Jhon", -2, "2 Impasse de l'epi", 23));
+
+        //Ajout Client qui existe déjà
+        clients.ajouterClient(new ClientProfessionnel("NKEOUA", TypeClient.PROFESSIONNEL, new GestionDates("01/05/2024"), 23));
+
+        //Ajout vehicule kilometrage maximum depassé
+        vehicules.ajouterVehicule(new Berline(TypeVehicule.BERLINE, NombreDePortes.QUATRE, new Immatriculation("344 AC 4"), Constructeur.CITROEN, "4x4", 5000000000000.0, 150000, 120, "30/05/2024"));
     }
 }

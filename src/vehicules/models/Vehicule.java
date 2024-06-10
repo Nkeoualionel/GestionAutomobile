@@ -1,10 +1,12 @@
-package automobile.models;
+package vehicules.models;
 
-import automobile.enums.Constructeur;
-import automobile.enums.NombreDePortes;
-import automobile.enums.TypeVehicule;
+import vehicules.enums.Constructeur;
+import vehicules.enums.NombreDePortes;
+import vehicules.enums.TypeVehicule;
 
-public class Vehicule {
+import java.io.Serializable;
+
+public class Vehicule implements Serializable {
     private TypeVehicule typeVehicule;
     private NombreDePortes nombreDePortes;
     private Immatriculation immatriculation;
@@ -15,6 +17,9 @@ public class Vehicule {
     private double kilometrageFin;
     private String dateFin;
 
+    public Vehicule() {
+
+    }
     public Vehicule(TypeVehicule typeVehicule, NombreDePortes nombreDePortes, Immatriculation immatriculation, Constructeur constructeur, String modele, double kilometrage, double prixAchat, double kilometrageFin, String dateFin) {
         this.typeVehicule = typeVehicule;
         this.nombreDePortes = nombreDePortes;

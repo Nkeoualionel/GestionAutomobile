@@ -1,4 +1,4 @@
-package clientele.enums;
+package clients.enums;
 
 public enum TypeClient {
     PARTICULIER,

@@ -1,8 +1,7 @@
-package clientele.data;
+package clients.data;
 
-import clientele.models.Client;
-import clientele.models.ClientParticulier;
-import clientele.models.ClientProfessionnel;
+import clients.models.Client;
+import clients.models.ClientParticulier;
 import exception.GestionAutomobileClientsException;
 import exception.GestionAutomobileClientsParticuliersException;
 
@@ -27,21 +26,19 @@ public class Clients extends ArrayList<Client>{
     }
 
     /*Ajout du client:
-        - Si le client n'existe pas et son âge n'est pas négatif, tu ajoutes.
-        - Au cas contraire, n'ajoute pas
+        - Si le client existe déjà genère une exception.
+        - Si c'est un client particulier et son age est inférieur à 0 genère une exception.
+        - Sinon tu peux ajouter le client
     */
     public void ajouterClient(Client client) throws GestionAutomobileClientsException {
         for (Client c : clients) {
             if(c.equals(client)) {
-                throw new GestionAutomobileClientsException("Ce client existe déjà.");
+                throw new GestionAutomobileClientsException(c.typeClient.name(), c.nomClient);
             }
         }
 
-        if(client instanceof ClientParticulier) {
-            int age = ((ClientParticulier) client).getAge();
-            if(age < 0) {
-                throw new GestionAutomobileClientsParticuliersException("L'âge ne peut pas être négatif");
-            }
+        if(client instanceof ClientParticulier && ((ClientParticulier) client).getAge() < 0) {
+            throw new GestionAutomobileClientsParticuliersException("L'âge ne peut pas être négatif");
         }
 
         clients.add(client);
@@ -54,6 +51,10 @@ public class Clients extends ArrayList<Client>{
         for (Client client : clients) {
             System.out.println(client);
         }
+    }
+
+    public void setClients(ArrayList<Client> clients) {
+        this.clients = clients;
     }
 
     public ArrayList<Client> getClients() {

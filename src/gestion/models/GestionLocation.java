@@ -1,10 +1,11 @@
 package gestion.models;
 
-import automobile.models.Vehicule;
-import clientele.models.Client;
-import clientele.models.ClientParticulier;
-import clientele.models.ClientProfessionnel;
-import clientele.utils.GestionDates;
+import vehicules.models.Vehicule;
+import clients.models.Client;
+import clients.models.ClientParticulier;
+import clients.models.ClientProfessionnel;
+import clients.utils.GestionDates;
+import exception.GestionAutomobileVehiculesLocationException;
 import gestion.data.Gestion;
 
 public class GestionLocation {
@@ -14,15 +15,14 @@ public class GestionLocation {
         this.gestion = gestion;
     }
 
-    public boolean demandeDeLocation(Vehicule vehicule, Client client) {
-        if (gestion.estDispoLocation(vehicule)) {
-            gestion.vehiculesDispoLocation.remove(vehicule);
-            gestion.vehiculesEnLocation.put(client, vehicule);
-            client.nombreLocation++;
-            return true;
+    public boolean demandeDeLocation(Vehicule vehicule, Client client) throws GestionAutomobileVehiculesLocationException {
+        if(!gestion.estDispoLocation(vehicule)) {
+          throw new GestionAutomobileVehiculesLocationException()  ;
         }
-
-        return false;
+        gestion.vehiculesDispoLocation.remove(vehicule);
+        gestion.vehiculesEnLocation.put(client, vehicule);
+        client.nombreLocation++;
+        return true;
     }
 
     public double getTarif(Vehicule vehicule, Client client) {
@@ -47,11 +47,9 @@ public class GestionLocation {
         return gestion.prixLocation(vehicule, nombreDeLocation, tauxRemise, nombreDeJour);
     }
 
-    public double finDeLocation(Vehicule vehicule, Client client, String dateFin, double kilometrageFin) {
-        gestion.vehiculesEnLocation.remove(client);
-        vehicule.setKilometrageFin(kilometrageFin);
-        vehicule.setDateFin(dateFin);
-        gestion.vehiculesDispoLocation.add(vehicule);
+    public double finDeLocation(Vehicule vehicule, Client client) {
+        Gestion gestion = Gestion.getInstance();
+        gestion.terminerLocation(client, vehicule, vehicule.getDateFin(), vehicule.getKilometrageFin());
         return getTarif(vehicule, client);
     }
 

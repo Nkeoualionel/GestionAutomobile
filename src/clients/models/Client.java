@@ -1,15 +1,20 @@
-package clientele.models;
+package clients.models;
 
-import clientele.enums.TypeClient;
-import clientele.utils.GestionDates;
+import clients.enums.TypeClient;
+import clients.utils.GestionDates;
 
-public class Client {
+import java.io.Serializable;
+
+public class Client implements Serializable {
     public  String nomClient;
     public TypeClient typeClient;
     public GestionDates date;
 
     public int nombreLocation = 0;
 
+    public Client() {
+
+    }
     public Client(String nomClient, TypeClient typeClient, GestionDates date) {
         this.nomClient = nomClient;
         this.typeClient = typeClient;

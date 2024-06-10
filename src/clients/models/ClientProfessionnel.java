@@ -1,7 +1,7 @@
-package clientele.models;
+package clients.models;
 
-import clientele.enums.TypeClient;
-import clientele.utils.GestionDates;
+import clients.enums.TypeClient;
+import clients.utils.GestionDates;
 
 public class ClientProfessionnel extends Client {
     private double tauxRemise;

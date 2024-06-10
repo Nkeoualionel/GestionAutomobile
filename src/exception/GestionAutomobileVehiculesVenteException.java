@@ -1,8 +1,8 @@
 package exception;
 
-public class GestionAutomobileVehiculesVenteException extends GestionAutomobileVehiculesException{
+public class GestionAutomobileVehiculesVenteException extends GestionAutomobileVehiculesException {
 
-    public GestionAutomobileVehiculesVenteException(String message) {
-        super(message);
+    public GestionAutomobileVehiculesVenteException() {
+        super("Ce véhicule n’est plus disponible à la vente");
     }
 }
